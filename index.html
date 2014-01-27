@@ -2,21 +2,61 @@
 <head>
 <meta charset="utf-8" />
 
-
 <title>BF interpreter</title>
 
-<style>
+<!--
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+-->
 
+<script src="lib/jquery-2.1.0.min.js"></script>
+<link rel="stylesheet" href="lib/bootstrap.min.css">
+<link rel="stylesheet" href="lib/bootstrap-theme.min.css">
+<script src="lib/bootstrap.min.js"></script>
+
+<style>
+code
+{
+  color : black;
+  background-color: white;
+  width : 100px;
+  overflow: auto;
+}
+
+span 
+{
+  overflow: auto;
+  width : 100px;
+}
 </style>
+
 </head>
 
 <body>
+
+<div id="wrap">
+
+<div class="container" >
+<div class="row">
+  <div class="col-md-12"><h2>Brainfuck!</h2></div>
+</div>
+
 <code style="font-size:1.5em"></code></br></br>
-<code style="font-size:1.5em"></code></br>
+
+<div class="row">
+<div class="col-md-12" style="overflow-y:auto;">
+<code style="font-size:1.5em"></code></span></br>
 <code style="font-size:1.5em"></code></br></br>
+</div>
+</div>
+
 <code style="font-size:1.5em"></code></br></br>
 <code style="font-size:1.5em"></code></br></br>
 
+</div>
+</div>
 
 <script type='text/javascript' src= 'script.js'></script>
 
