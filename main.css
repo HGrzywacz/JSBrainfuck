@@ -1,0 +1,18 @@
+code
+{
+  color : black;
+  background-color: rgba(0,0,0,0);
+  width : 100px;
+}
+
+.navbar-brand 
+{
+  font-size : 1.8em;
+}
+
+a.active {
+  background: url(/img/check.png) center left no-repeat;
+  background-size: 15px 15px;
+  padding-left: 0px;
+  margin-left: 10px;
+}

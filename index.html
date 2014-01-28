@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html class="no-js">
 <head>
 <meta charset="utf-8" />
 
@@ -11,54 +12,131 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 -->
 
-<script src="lib/jquery-2.1.0.min.js"></script>
-<link rel="stylesheet" href="lib/bootstrap.min.css">
-<link rel="stylesheet" href="lib/bootstrap-theme.min.css">
-<script src="lib/bootstrap.min.js"></script>
-
-<style>
-code
-{
-  color : black;
-  background-color: white;
-  width : 100px;
-  overflow: auto;
-}
-
-span 
-{
-  overflow: auto;
-  width : 100px;
-}
-</style>
+<link rel="stylesheet" href="lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="lib/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="main.css"/>
 
 </head>
 
-<body>
+<body style="background-color: #eee">
 
-<div id="wrap">
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">JSBrainfuck</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="http://en.wikipedia.org/wiki/Brainfuck" class="external">Wikipedia:brainfuck</a></li>
 
-<div class="container" >
-<div class="row">
-  <div class="col-md-12"><h2>Brainfuck!</h2></div>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Przykładowe programy <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Lista liczb</a></li>
+          <li><a href="#">Hello World!</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tempo wykonywania <b class="caret"></b></a>
+        <ul class="dropdown-menu" id="speed">
+          <li><a href="">Bardzo szybko</a></li>
+          <li><a href="" class="active">Szybko</a></li>
+          <li><a href="">Powoli</a></li>
+        </ul>
+        </li>
+
+      </ul>
+
+      <form class="navbar-form navbar-right">
+        <iframe src="http://ghbtns.com/github-btn.html?user=HGrzywacz&repo=JSBrainfuck&type=watch&count=true" 
+          height="30" width="118" frameborder="0" scrolling="0" 
+          style="width: 80px; height: 30px; padding-top: 6px;" allowTransparency="true">
+        </iframe>
+        <iframe src="http://ghbtns.com/github-btn.html?user=HGrzywacz&repo=JSBrainfuck&type=fork&count=true" 
+          height="30" width="118" frameborder="0" scrolling="0" 
+          style="width:80px; height: 30px; padding-top: 6px;" allowTransparency="true">
+        </iframe>
+        <iframe src="http://ghbtns.com/github-btn.html?user=HGrzywacz&type=follow&count=true" 
+          height="30" width="168" frameborder="0" scrolling="0" 
+          style="width:168px; height: 30px; padding-top: 6px" allowTransparency="true">
+        </iframe>
+      </form>
+
+    </div><!--/.navbar-collapse -->
+  </div>
 </div>
 
-<code style="font-size:1.5em"></code></br></br>
+<div class="container" style="padding-top: 50px">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>Program:</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <input id="programInput" type="text" placeholder="Program" 
+        class="form-control" oninput="printProgram()"/>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 10px">
+    <div class="col-lg-1">
+      <button id="startBtn" type="submit" 
+        class="btn btn-success" onclick="start();">Uruchom</button>
+    </div>
+    <div class="col-lg-1">
+      <button id="stopBtn" type="submit" 
+        class="btn btn-warning" onclick="pause();">Zatrzymaj</button>
+    </div>
+    <div class="col-lg-1">
+      <button id="resetBtn" type="submit" 
+        class="btn btn-danger" onclick="reset();">Reset</button>
+    </div>
+    <div class="col-lg-9">
+      <button id="stepBtn" type="submit" 
+        class="btn btn-primary pull-right" onclick="step();">Krok za krokiem</button>
+    </div>
+  </div>
+  <div class="row" style="padding-top:20px;font-size:1.5em">
+    <div class="col-lg-3">
+      <span>krok: </span><span>0</span>
+    </div>
+    <div class="col-lg-3">
+      <span>instrukcja: </span><span>[</span>
+    </div>
+    <div class="col-lg-3">
+      <span>adres pamięci: </span><span>0</span>
+    </div>
+    <div class="col-lg-3">
+      <span>zawartość komórki: </span><span>A</span>
+    </div>
+  </div>
+</div> <!--/. containter -->
 
-<div class="row">
-<div class="col-md-12" style="overflow-y:auto;">
-<code style="font-size:1.5em"></code></span></br>
-<code style="font-size:1.5em"></code></br></br>
-</div>
-</div>
-
-<code style="font-size:1.5em"></code></br></br>
-<code style="font-size:1.5em"></code></br></br>
-
-</div>
+<div class="row" style="padding-top:20px">
+  <div class="col-lg-12" style="text-align:center;font-size:1.5em;">
+    <tt id="programString">++++++[][]+++</tt><br/>
+    <tt id="pointerString">^</tt>
+  </div>
 </div>
 
-<script type='text/javascript' src= 'script.js'></script>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <input type="text" placeholder="Program" class="form-control" value="mem" readonly/>
+    </div>
+  </div>
+</div>
+
+<script src="lib/jquery-2.1.0.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script type='text/javascript' src='script.js'></script>
+<script type='text/javascript' src='ui.js'></script>
 
 </body>
 </html>

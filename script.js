@@ -1,8 +1,10 @@
 //var program = "++.[-.].";
-var program = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+//var program = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+
+var program = "";
 var memory = [];
 
-var miliseconds = 0;
+var miliseconds = 1;
 
 var pointer = 0;
 var ni = 0;
@@ -12,10 +14,10 @@ memory[pointer] = 0;
 var numberofsteps = 0;
 var petla = 1;
 
-document.getElementsByTagName('code')[1].innerHTML = program;
-
 step = function() {
 
+  console.dir(program);
+  console.log("step");
   var instruction = program[ni];
 
   if (instruction === ">") {
@@ -48,7 +50,7 @@ step = function() {
     console.dir(memory);
     };
  
-  printPosition();
+  printPointer();
 };
 
 String.prototype.repeat = function( num )
@@ -121,7 +123,23 @@ jumpBackward = function() {
   console.log("Syntax error: no closing [ found: at " + place);
 };
 
-var intervalID = window.setInterval(step, miliseconds);
+var intervalID;
 
+start = function() {
+  intervalID = window.setInterval(step, miliseconds);
+  step();
+  iao.programInput.readOnly = true;
+};
 
+pause = function() {
+  window.clearInterval(intervalID);
+  iao.programInput.readOnly = false;
+};
+
+reset = function() {
+  pause();
+  ni = 0;
+  memory = [0];
+  printPointer();
+}
 
