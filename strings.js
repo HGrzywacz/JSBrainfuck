@@ -1,0 +1,10 @@
+var strplus = "Dodaj jeden do pamięci w komórce";
+var strminus = "Odejmij jeden od pamięci w komórce";
+var strleft = "Przesuń pamięć o jedną komórkę w lewo";
+var strright = "Przesuń pamięć o jedną komórkę w prawo";
+var strif = "Jeżeli w komórce pamięci jest 0, skocz do przodu pasującej instrukcji ]. Jeżeli nie, przejdź do następnej instrukcji";
+var strfi = "Jeżeli w komórce pamięci nie jest 0, skocz do tyłu do pasującej instrukcji ]. Jeżeli jest 0, przejdź do następnej instrukcji";
+var stroutput = "Wypisz zawartość komórki pamięci na wyjście";
+var strinput = "Pobierz znak od użytkownika (niezaimplementowane)";
+var strbreakpoint = "Ponadstandardowa instrukcja: zatrzymaj interpretację programu";
+var strclear = "Wyczyść program";

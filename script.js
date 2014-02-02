@@ -1,23 +1,18 @@
-//var program = "++.[-.].";
-//var program = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
-
 var program = "";
 var memory = [];
 
-var miliseconds = 1;
+var miliseconds = 20;
 
 var pointer = 0;
 var ni = 0;
 
 memory[pointer] = 0;
 
-var numberofsteps = 0;
+var numberOfSteps = 0;
 var petla = 1;
 
 step = function() {
 
-  console.dir(program);
-  console.log("step");
   var instruction = program[ni];
 
   if (instruction === ">") {
@@ -37,20 +32,25 @@ step = function() {
     putout();
     putChars();
     ni++;
+  } else if (instruction === ",") {
+    ;
   } else if (instruction === "[") {
     conditional();
     petla++;
   } else if (instruction === "]") {
     conditionalBack();
+  } else if (instruction === "&") {
+    pause();
+    ni++;
   };
 
-  numberofsteps++;
+  numberOfSteps++;
   if (ni >= program.length) {
-    window.clearInterval(intervalID);
-    console.dir(memory);
-    };
+    pause();
+  };
  
   printPointer();
+  printValues();
 };
 
 String.prototype.repeat = function( num )
@@ -69,16 +69,6 @@ incrementCell = function() {
 
 decrementCell = function() {
   memory[pointer]--; 
-};
-
-putout = function() {
-  var p = document.getElementsByTagName("code")[0];
-  p.innerHTML = p.innerHTML + memory[pointer] + ":";
-};
-
-putChars = function() {
-  var p = document.getElementsByTagName("code")[4];
-  p.innerHTML = p.innerHTML + String.fromCharCode(memory[pointer]);
 };
 
 conditional = function() {
@@ -100,6 +90,7 @@ jumpForward = function() {
     ni++; 
   };
   console.log("Syntax error: no closing ] found: at " + place);
+  syntaxError();
 };
 
 conditionalBack = function() {
@@ -120,6 +111,7 @@ jumpBackward = function() {
     else if (program[ni] === "[") {counter--};
     ni--; 
   };
+  syntaxError();
   console.log("Syntax error: no closing [ found: at " + place);
 };
 
@@ -139,7 +131,30 @@ pause = function() {
 reset = function() {
   pause();
   ni = 0;
+  numberOfSteps = 0;
   memory = [0];
+  pointer = 0;
+  printValues();
   printPointer();
+  clearOutputs();
 }
+
+putout = function() {
+  iao.outputNum.value = iao.outputNum.value + memory[pointer] + ":";
+};
+
+putChars = function() {
+  iao.outputASCII.value = iao.outputASCII.value + String.fromCharCode(memory[pointer]);
+};
+
+syntaxError = function() {
+  iao.outputASCII.value = "Syntax error;";
+  iao.outputNum.value = "Syntax error;";
+};
+  
+
+clearOutputs = function() {
+  iao.outputNum.value = "";
+  iao.outputASCII.value = "";
+};
 

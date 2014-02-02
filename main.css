@@ -1,3 +1,18 @@
+body
+{
+  background-color: #eee;
+}
+
+.btn
+{
+  background-color: #bebebe;
+}
+
+/*.clearBtn
+{
+ background-color : #d7973d;
+}*/
+
 code
 {
   color : black;
@@ -16,3 +31,5 @@ a.active {
   padding-left: 0px;
   margin-left: 10px;
 }
+
+
